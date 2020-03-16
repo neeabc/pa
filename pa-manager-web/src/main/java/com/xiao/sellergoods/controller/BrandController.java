@@ -1,9 +1,12 @@
 package com.xiao.sellergoods.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.xiao.entity.PageResult;
+import com.xiao.entity.Result;
 import com.xiao.pojo.TbBrand;
-import com.xiao.sellergoods.servcie.BrandService;
+import com.xiao.sellergoods.service.BrandService;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -25,7 +28,50 @@ public class BrandController {
      */
     @RequestMapping("/findAll")
     public List<TbBrand> findAll(){
-        System.out.println("aaaaaa");
         return brandService.findAll();
+    }
+
+    @RequestMapping("/findPage")
+    public PageResult<TbBrand> findPage(
+            @RequestParam(defaultValue = "1") Integer page,
+            @RequestParam(defaultValue = "10") Integer rows){
+        return brandService.findPage(page, rows);
+    }
+
+    @RequestMapping("/findOne")
+    public TbBrand findOne(long id){
+        return brandService.findOne(id);
+    }
+
+    @RequestMapping("/add")
+    public Result add(TbBrand tbBrand){
+        int i;
+        try{
+            i = brandService.add(tbBrand);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false, "增加失败");
+        }
+        if (i==0){
+            return new Result(false, "增加失败");
+        }else {
+            return new Result(true, "增加成功");
+        }
+    }
+
+    @RequestMapping("/update")
+    public Result update(TbBrand tbBrand){
+        int i;
+        try{
+            i = brandService.update(tbBrand);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false, "修改失败");
+        }
+        if (i==0){
+            return new Result(false, "修改失败");
+        }else {
+            return new Result(true, "修改成功");
+        }
     }
 }
