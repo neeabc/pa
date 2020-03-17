@@ -1,10 +1,13 @@
 package com.xiao.sellergoods.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.github.pagehelper.PageInfo;
 import com.xiao.entity.PageResult;
 import com.xiao.entity.Result;
 import com.xiao.pojo.TbBrand;
 import com.xiao.sellergoods.service.BrandService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +22,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/brand")
 public class BrandController {
+    //日志
+    protected final Log logger = LogFactory.getLog(this.getClass());
+
     // @reference也是注入，但是一般用来注入分布式的远程服务对象，需要配合dubbo配置使用
     @Reference
     private BrandService brandService;
@@ -28,14 +34,16 @@ public class BrandController {
      */
     @RequestMapping("/findAll")
     public List<TbBrand> findAll(){
-        return brandService.findAll();
+        List<TbBrand> list = brandService.findAll();
+        return list;
     }
 
     @RequestMapping("/findPage")
     public PageResult<TbBrand> findPage(
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "10") Integer rows){
-        return brandService.findPage(page, rows);
+        PageInfo<TbBrand> result = brandService.findPage(page, rows);
+        return new PageResult<>(result.getTotal(), result.getList());
     }
 
     @RequestMapping("/findOne")

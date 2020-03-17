@@ -1,6 +1,6 @@
 package com.xiao.sellergoods.service;
 
-import com.xiao.entity.PageResult;
+import com.github.pagehelper.PageInfo;
 import com.xiao.pojo.TbBrand;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public interface BrandService {
      * @return
      */
     List<TbBrand> findAll();
-    PageResult<TbBrand> findPage(int pageNum, int pageSize);
+    PageInfo<TbBrand> findPage(int pageNum, int pageSize);
     int add(TbBrand tbBrand);
 
     TbBrand findOne(long id);

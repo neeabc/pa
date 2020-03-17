@@ -1,9 +1,8 @@
 package com.xiao.sellergoods.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.xiao.entity.PageResult;
+import com.github.pagehelper.PageInfo;
 import com.xiao.mapper.TbBrandMapper;
 import com.xiao.pojo.TbBrand;
 import com.xiao.sellergoods.service.BrandService;
@@ -21,14 +20,16 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public List<TbBrand> findAll() {
-        return brandMapper.selectByExample(null);
+        List<TbBrand> list = brandMapper.selectByExample(null);
+        return list;
     }
 
     @Override
-    public PageResult<TbBrand> findPage(int pageNum, int pageSize) {
+    public PageInfo<TbBrand> findPage(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        Page<TbBrand> page = (Page<TbBrand>) brandMapper.selectByExample(null);
-        return new PageResult<>(page.getTotal(), page.getResult());
+        List<TbBrand> list = brandMapper.selectByExample(null);
+        PageInfo<TbBrand> info = new PageInfo<>(list);
+        return info;
     }
 
     @Override
