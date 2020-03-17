@@ -1,7 +1,10 @@
 package com.xiao.pojo;
 
+import lombok.ToString;
+
 import java.io.Serializable;
 
+@ToString
 public class TbBrand implements Serializable {
     private Long id;
 

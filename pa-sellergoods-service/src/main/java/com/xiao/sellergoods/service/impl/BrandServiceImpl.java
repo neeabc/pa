@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xiao.mapper.TbBrandMapper;
 import com.xiao.pojo.TbBrand;
+import com.xiao.pojo.TbBrandExample;
 import com.xiao.sellergoods.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -47,5 +48,36 @@ public class BrandServiceImpl implements BrandService {
     public int update(TbBrand tbBrand) {
         int i = brandMapper.updateByPrimaryKeySelective(tbBrand);
         return i;
+    }
+
+    @Override
+    public int delete(long[] ids) {
+        int i=0;
+        for(long id:ids){
+            i += brandMapper.deleteByPrimaryKey(id);
+        }
+        return i;
+    }
+
+    @Override
+    public PageInfo<TbBrand> search(Integer page, Integer rows, TbBrand tbBrand) {
+        PageHelper.startPage(page, rows);
+
+        TbBrandExample example = new TbBrandExample();
+        TbBrandExample.Criteria criteria = example.createCriteria();
+        if (tbBrand!=null){
+            String name = tbBrand.getName();
+            String firstChar = tbBrand.getFirstChar();
+            if (name!=null && !name.equals("")){
+                criteria.andNameLike("%"+name+"%");
+            }
+            if (firstChar!=null && firstChar.length()==1){
+                criteria.andFirstCharEqualTo(firstChar.toUpperCase());
+            }
+        }
+
+        List<TbBrand> list = brandMapper.selectByExample(example);
+        PageInfo<TbBrand> info = new PageInfo<>(list);
+        return info;
     }
 }

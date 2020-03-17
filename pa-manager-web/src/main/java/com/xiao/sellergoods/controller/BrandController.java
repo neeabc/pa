@@ -8,6 +8,7 @@ import com.xiao.pojo.TbBrand;
 import com.xiao.sellergoods.service.BrandService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,7 +53,7 @@ public class BrandController {
     }
 
     @RequestMapping("/add")
-    public Result add(TbBrand tbBrand){
+    public Result add(@RequestBody TbBrand tbBrand){
         int i;
         try{
             i = brandService.add(tbBrand);
@@ -68,7 +69,7 @@ public class BrandController {
     }
 
     @RequestMapping("/update")
-    public Result update(TbBrand tbBrand){
+    public Result update(@RequestBody TbBrand tbBrand){
         int i;
         try{
             i = brandService.update(tbBrand);
@@ -81,5 +82,30 @@ public class BrandController {
         }else {
             return new Result(true, "修改成功");
         }
+    }
+
+    @RequestMapping("/delete")
+    public Result delete(long[] ids){
+        int i;
+        try{
+            i = brandService.delete(ids);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false, "修改失败");
+        }
+        if (i==0){
+            return new Result(false, "修改失败");
+        }else {
+            return new Result(true, "修改成功");
+        }
+    }
+
+    @RequestMapping("/search")
+    public PageResult<TbBrand> search(
+            @RequestParam(defaultValue = "1") Integer page,
+            @RequestParam(defaultValue = "10") Integer rows,
+            @RequestBody TbBrand tbBrand){
+        PageInfo<TbBrand> info = brandService.search(page,rows,tbBrand);
+        return new PageResult<>(info.getTotal(), info.getList());
     }
 }

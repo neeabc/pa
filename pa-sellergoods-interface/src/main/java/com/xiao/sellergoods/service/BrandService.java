@@ -20,4 +20,8 @@ public interface BrandService {
     TbBrand findOne(long id);
 
     int update(TbBrand tbBrand);
+
+    int delete(long[] ids);
+
+    PageInfo<TbBrand> search(Integer page, Integer rows, TbBrand tbBrand);
 }

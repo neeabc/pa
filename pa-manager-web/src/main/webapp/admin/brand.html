@@ -23,7 +23,7 @@
 						$scope.list=response;
 					}
 				);
-			}
+			};
 
             //分页控件配置
             $scope.paginationConf = {
@@ -32,13 +32,15 @@
                 itemsPerPage: 10,
                 perPageOptions: [10, 20, 30, 40, 50],
                 onChange: function () {
+                    $scope.selectids = new Set();
                     $scope.reloadList();//重新加载
                 }
             };
 
             $scope.reloadList = function () {
-                $scope.findPage($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
-            }
+                //$scope.findPage($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
+                $scope.search( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
+            };
 
             $scope.findPage = function (page, rows) {
                 $http.get('../brand/findPage.do?page=' + page + '&rows=' + rows).success(
@@ -47,7 +49,7 @@
                         $scope.paginationConf.totalItems = response.total;//更新总记录数
                     }
                 );
-            }
+            };
 
             $scope.save = function () {
                 var methodName = "add";
@@ -62,13 +64,47 @@
 					    alert(responce.msg);
 					}
                 })
-            }
+            };
 
             $scope.findOne = function (id) {
 				$http.get("../brand/findOne.do?id="+id).success(function (responce) {
 					$scope.entity = responce;
                 })
+            };
+
+            $scope.selectids = new Set();
+			$scope.updateSelection = function($event,id){
+                if($event.target.checked){
+                    $scope.selectids.add(id);
+				}else{
+					$scope.selectids.delete(id);
+				}
+			};
+			
+			$scope.dele = function () {
+			    var list = [];
+			    $scope.selectids.forEach(function (id) {
+                    list.push(id);
+                });
+				$http.get("../brand/delete.do?ids="+list).success(function (response) {
+					if(response.success){
+					    $scope.reloadList();
+					}else{
+					    alert(response.message);
+					}
+                })
+            };
+
+			$scope.searchEntity = {};
+            $scope.search=function(page,rows){
+                $http.post('../brand/search.do?page='+page+"&rows="+rows, $scope.searchEntity).success(
+                    function(response){
+                        $scope.paginationConf.totalItems=response.total;//总记录数
+                        $scope.list=response.rows;//给列表变量赋值
+                    }
+                );
             }
+
 		});
     </script>
     
@@ -89,15 +125,17 @@
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ng-click="entity={}"><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>           
+                                        <button type="button" class="btn btn-default" title="删除" ng-click="dele()"><i class="fa fa-trash-o"></i> 删除</button>           
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="box-tools pull-right">
-                                <div class="has-feedback">
-							                                         
-                                </div>
+								<div class="has-feedback">
+									品牌名称:<input ng-model="searchEntity.name">
+									品牌首字母:<input ng-model="searchEntity.firstChar">
+									<button  class="btn btn-default" ng-click="reloadList()">查询</button>
+							</div>
                             </div>
                             <!--工具栏/-->
 
@@ -117,7 +155,7 @@
 
 								  <tbody>
 									  <tr ng-repeat="entity in list">
-										  <td><input type="checkbox" ></td>
+										  <td><input type="checkbox" ng-click="updateSelection($event,entity.id)"></td>
 										  <td>{{entity.id}}</td>
 										  <td>{{entity.name}}</td>
 										  <td>{{entity.firstChar}}</td>
