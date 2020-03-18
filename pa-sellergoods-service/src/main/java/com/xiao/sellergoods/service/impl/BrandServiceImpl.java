@@ -11,11 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-/**
- * Created by travelround on 2018/12/6.
- */
 @Service
 public class BrandServiceImpl implements BrandService {
+
     @Autowired
     private TbBrandMapper brandMapper;
 
@@ -40,7 +38,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public TbBrand findOne(long id) {
+    public TbBrand findOne(Long id) {
         return brandMapper.selectByPrimaryKey(id);
     }
 
@@ -50,8 +48,8 @@ public class BrandServiceImpl implements BrandService {
         return i;
     }
 
-    @Override
-    public int delete(long[] ids) {
+
+    public int delete(List<Long> ids) {
         int i=0;
         for(long id:ids){
             i += brandMapper.deleteByPrimaryKey(id);

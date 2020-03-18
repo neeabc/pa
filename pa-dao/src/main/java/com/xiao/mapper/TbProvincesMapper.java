@@ -2,11 +2,9 @@ package com.xiao.mapper;
 
 import com.xiao.pojo.TbProvinces;
 import com.xiao.pojo.TbProvincesExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface TbProvincesMapper {
-    int countByExample(TbProvincesExample example);
+public interface TbProvincesMapper extends BaseMapper<TbProvinces,TbProvincesExample,Integer>{
+/*    int countByExample(TbProvincesExample example);
 
     int deleteByExample(TbProvincesExample example);
 
@@ -26,5 +24,5 @@ public interface TbProvincesMapper {
 
     int updateByPrimaryKeySelective(TbProvinces record);
 
-    int updateByPrimaryKey(TbProvinces record);
+    int updateByPrimaryKey(TbProvinces record);*/
 }

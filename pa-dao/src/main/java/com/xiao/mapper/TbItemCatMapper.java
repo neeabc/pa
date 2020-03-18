@@ -2,11 +2,9 @@ package com.xiao.mapper;
 
 import com.xiao.pojo.TbItemCat;
 import com.xiao.pojo.TbItemCatExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface TbItemCatMapper {
-    int countByExample(TbItemCatExample example);
+public interface TbItemCatMapper extends BaseMapper<TbItemCat,TbItemCatExample,Long>{
+ /*   int countByExample(TbItemCatExample example);
 
     int deleteByExample(TbItemCatExample example);
 
@@ -26,5 +24,5 @@ public interface TbItemCatMapper {
 
     int updateByPrimaryKeySelective(TbItemCat record);
 
-    int updateByPrimaryKey(TbItemCat record);
+    int updateByPrimaryKey(TbItemCat record);*/
 }

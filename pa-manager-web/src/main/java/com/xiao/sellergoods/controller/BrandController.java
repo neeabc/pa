@@ -6,6 +6,7 @@ import com.xiao.entity.PageResult;
 import com.xiao.entity.Result;
 import com.xiao.pojo.TbBrand;
 import com.xiao.sellergoods.service.BrandService;
+import com.xiao.utils.UsualResult;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -59,13 +60,9 @@ public class BrandController {
             i = brandService.add(tbBrand);
         }catch (Exception e){
             e.printStackTrace();
-            return new Result(false, "增加失败");
+            return UsualResult.fail;
         }
-        if (i==0){
-            return new Result(false, "增加失败");
-        }else {
-            return new Result(true, "增加成功");
-        }
+        return UsualResult.check(i);
     }
 
     @RequestMapping("/update")
@@ -75,29 +72,21 @@ public class BrandController {
             i = brandService.update(tbBrand);
         }catch (Exception e){
             e.printStackTrace();
-            return new Result(false, "修改失败");
+            return UsualResult.fail;
         }
-        if (i==0){
-            return new Result(false, "修改失败");
-        }else {
-            return new Result(true, "修改成功");
-        }
+        return UsualResult.check(i);
     }
 
     @RequestMapping("/delete")
-    public Result delete(long[] ids){
+    public Result delete(@RequestParam(name = "ids") List<Long> ids){
         int i;
         try{
             i = brandService.delete(ids);
         }catch (Exception e){
             e.printStackTrace();
-            return new Result(false, "修改失败");
+            return UsualResult.fail;
         }
-        if (i==0){
-            return new Result(false, "修改失败");
-        }else {
-            return new Result(true, "修改成功");
-        }
+        return UsualResult.check(i);
     }
 
     @RequestMapping("/search")

@@ -2,11 +2,9 @@ package com.xiao.mapper;
 
 import com.xiao.pojo.TbOrderItem;
 import com.xiao.pojo.TbOrderItemExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface TbOrderItemMapper {
-    int countByExample(TbOrderItemExample example);
+public interface TbOrderItemMapper extends BaseMapper<TbOrderItem,TbOrderItemExample,Long>{
+/*    int countByExample(TbOrderItemExample example);
 
     int deleteByExample(TbOrderItemExample example);
 
@@ -26,5 +24,5 @@ public interface TbOrderItemMapper {
 
     int updateByPrimaryKeySelective(TbOrderItem record);
 
-    int updateByPrimaryKey(TbOrderItem record);
+    int updateByPrimaryKey(TbOrderItem record);*/
 }

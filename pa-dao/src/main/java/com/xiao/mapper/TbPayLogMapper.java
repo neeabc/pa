@@ -2,11 +2,9 @@ package com.xiao.mapper;
 
 import com.xiao.pojo.TbPayLog;
 import com.xiao.pojo.TbPayLogExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface TbPayLogMapper {
-    int countByExample(TbPayLogExample example);
+public interface TbPayLogMapper extends BaseMapper<TbPayLog,TbPayLogExample,String>{
+/*    int countByExample(TbPayLogExample example);
 
     int deleteByExample(TbPayLogExample example);
 
@@ -26,5 +24,5 @@ public interface TbPayLogMapper {
 
     int updateByPrimaryKeySelective(TbPayLog record);
 
-    int updateByPrimaryKey(TbPayLog record);
+    int updateByPrimaryKey(TbPayLog record);*/
 }

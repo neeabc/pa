@@ -2,11 +2,9 @@ package com.xiao.mapper;
 
 import com.xiao.pojo.TbFreightTemplate;
 import com.xiao.pojo.TbFreightTemplateExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface TbFreightTemplateMapper {
-    int countByExample(TbFreightTemplateExample example);
+public interface TbFreightTemplateMapper extends BaseMapper<TbFreightTemplate,TbFreightTemplateExample,Long>{
+/*    int countByExample(TbFreightTemplateExample example);
 
     int deleteByExample(TbFreightTemplateExample example);
 
@@ -26,5 +24,5 @@ public interface TbFreightTemplateMapper {
 
     int updateByPrimaryKeySelective(TbFreightTemplate record);
 
-    int updateByPrimaryKey(TbFreightTemplate record);
+    int updateByPrimaryKey(TbFreightTemplate record);*/
 }

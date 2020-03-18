@@ -2,11 +2,9 @@ package com.xiao.mapper;
 
 import com.xiao.pojo.TbContentCategory;
 import com.xiao.pojo.TbContentCategoryExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface TbContentCategoryMapper {
-    int countByExample(TbContentCategoryExample example);
+public interface TbContentCategoryMapper extends BaseMapper<TbContentCategory,TbContentCategoryExample,Long>{
+/*    int countByExample(TbContentCategoryExample example);
 
     int deleteByExample(TbContentCategoryExample example);
 
@@ -26,5 +24,5 @@ public interface TbContentCategoryMapper {
 
     int updateByPrimaryKeySelective(TbContentCategory record);
 
-    int updateByPrimaryKey(TbContentCategory record);
+    int updateByPrimaryKey(TbContentCategory record);*/
 }

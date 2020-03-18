@@ -2,11 +2,9 @@ package com.xiao.mapper;
 
 import com.xiao.pojo.TbAreas;
 import com.xiao.pojo.TbAreasExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface TbAreasMapper {
-    int countByExample(TbAreasExample example);
+public interface TbAreasMapper extends BaseMapper<TbAreas,TbAreasExample,Integer>{
+/*    int countByExample(TbAreasExample example);
 
     int deleteByExample(TbAreasExample example);
 
@@ -26,5 +24,5 @@ public interface TbAreasMapper {
 
     int updateByPrimaryKeySelective(TbAreas record);
 
-    int updateByPrimaryKey(TbAreas record);
+    int updateByPrimaryKey(TbAreas record);*/
 }

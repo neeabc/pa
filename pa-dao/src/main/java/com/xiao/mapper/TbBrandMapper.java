@@ -2,11 +2,9 @@ package com.xiao.mapper;
 
 import com.xiao.pojo.TbBrand;
 import com.xiao.pojo.TbBrandExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface TbBrandMapper {
-    int countByExample(TbBrandExample example);
+public interface TbBrandMapper extends BaseMapper<TbBrand,TbBrandExample,Long> {
+/*    int countByExample(TbBrandExample example);
 
     int deleteByExample(TbBrandExample example);
 
@@ -26,5 +24,5 @@ public interface TbBrandMapper {
 
     int updateByPrimaryKeySelective(TbBrand record);
 
-    int updateByPrimaryKey(TbBrand record);
+    int updateByPrimaryKey(TbBrand record);*/
 }

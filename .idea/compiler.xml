@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="GeneratorCode" />
         <module name="pa-common" />
         <module name="pa-dao" />
         <module name="pa-manager-web" />

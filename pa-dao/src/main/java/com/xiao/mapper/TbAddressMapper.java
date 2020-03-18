@@ -2,11 +2,9 @@ package com.xiao.mapper;
 
 import com.xiao.pojo.TbAddress;
 import com.xiao.pojo.TbAddressExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface TbAddressMapper {
-    int countByExample(TbAddressExample example);
+public interface TbAddressMapper extends BaseMapper<TbAddress,TbAddressExample,Long>{
+/*    int countByExample(TbAddressExample example);
 
     int deleteByExample(TbAddressExample example);
 
@@ -26,5 +24,5 @@ public interface TbAddressMapper {
 
     int updateByPrimaryKeySelective(TbAddress record);
 
-    int updateByPrimaryKey(TbAddress record);
+    int updateByPrimaryKey(TbAddress record);*/
 }

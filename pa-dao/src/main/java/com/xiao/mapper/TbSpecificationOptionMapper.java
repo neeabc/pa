@@ -2,11 +2,9 @@ package com.xiao.mapper;
 
 import com.xiao.pojo.TbSpecificationOption;
 import com.xiao.pojo.TbSpecificationOptionExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface TbSpecificationOptionMapper {
-    int countByExample(TbSpecificationOptionExample example);
+public interface TbSpecificationOptionMapper extends BaseMapper<TbSpecificationOption,TbSpecificationOptionExample,Long>{
+/*    int countByExample(TbSpecificationOptionExample example);
 
     int deleteByExample(TbSpecificationOptionExample example);
 
@@ -26,5 +24,5 @@ public interface TbSpecificationOptionMapper {
 
     int updateByPrimaryKeySelective(TbSpecificationOption record);
 
-    int updateByPrimaryKey(TbSpecificationOption record);
+    int updateByPrimaryKey(TbSpecificationOption record);*/
 }

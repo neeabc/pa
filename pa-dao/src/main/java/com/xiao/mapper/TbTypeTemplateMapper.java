@@ -2,11 +2,9 @@ package com.xiao.mapper;
 
 import com.xiao.pojo.TbTypeTemplate;
 import com.xiao.pojo.TbTypeTemplateExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface TbTypeTemplateMapper {
-    int countByExample(TbTypeTemplateExample example);
+public interface TbTypeTemplateMapper extends BaseMapper<TbTypeTemplate,TbTypeTemplateExample,Long> {
+/*    int countByExample(TbTypeTemplateExample example);
 
     int deleteByExample(TbTypeTemplateExample example);
 
@@ -26,5 +24,5 @@ public interface TbTypeTemplateMapper {
 
     int updateByPrimaryKeySelective(TbTypeTemplate record);
 
-    int updateByPrimaryKey(TbTypeTemplate record);
+    int updateByPrimaryKey(TbTypeTemplate record);*/
 }

@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="GeneratorCode:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/GeneratorCode_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="GeneratorCode/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="GeneratorCode" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -15,6 +15,7 @@
         <module>pa-sellergoods-service</module>
         <module>pa-manager-web</module>
         <module>pa-shop-web</module>
+        <module>GeneratorCode</module>
     </modules>
     <packaging>pom</packaging>
 
