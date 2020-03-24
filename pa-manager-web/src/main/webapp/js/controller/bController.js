@@ -1,5 +1,4 @@
-app.controller('baseController' ,function($scope){
-
+app.controller('bController' ,function($scope){
 
     //分页控件配置
     $scope.paginationConf = {
