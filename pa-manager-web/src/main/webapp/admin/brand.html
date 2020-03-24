@@ -34,7 +34,7 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ng-click="entity={}"><i class="fa fa-file-o"></i> 新建</button>
+                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ng-click="pageObj.cleEntity()"><i class="fa fa-file-o"></i> 新建</button>
                                         <button type="button" class="btn btn-default" title="删除" ng-click="dele()"><i class="fa fa-trash-o"></i> 删除</button>           
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
@@ -42,8 +42,8 @@
                             </div>
                             <div class="box-tools pull-right">
 								<div class="has-feedback">
-									品牌名称:<input ng-model="searchEntity.name">
-									品牌首字母:<input ng-model="searchEntity.firstChar">
+									品牌名称:<input ng-model="pageObj.searchEntity.name">
+									品牌首字母:<input ng-model="pageObj.searchEntity.firstChar">
 									<button  class="btn btn-default" ng-click="reloadList()">查询</button>
 							</div>
                             </div>
@@ -64,7 +64,7 @@
 			                      </thead>
 
 								  <tbody>
-									  <tr ng-repeat="entity in list">
+									  <tr ng-repeat="entity in pageObj.list">
 										  <td><input type="checkbox" ng-click="updateSelection($event,entity.id)"></td>
 										  <td>{{entity.id}}</td>
 										  <td>{{entity.name}}</td>
@@ -114,7 +114,7 @@
 
 
 					<!-- tm-pagination是angularjs的分页插件 赋值conf属性即可完成效果 -->
-					<tm-pagination conf="paginationConf"></tm-pagination>
+					<tm-pagination conf="pageObj.conf"></tm-pagination>
                      </div>
                     <!-- /.box-body -->
          
@@ -130,11 +130,11 @@
 			<table class="table table-bordered table-striped"  width="800px">
 		      	<tr>
 		      		<td>品牌名称</td>
-		      		<td><input  class="form-control" ng-model="entity.name" placeholder="品牌名称" >  </td>
+		      		<td><input  class="form-control" ng-model="pageObj.entity.name" placeholder="品牌名称" >  </td>
 		      	</tr>		      	
 		      	<tr>
 		      		<td>首字母</td>
-		      		<td><input  class="form-control" ng-model="entity.firstChar" placeholder="首字母">  </td>
+		      		<td><input  class="form-control" ng-model="pageObj.entity.firstChar" placeholder="首字母">  </td>
 		      	</tr>		      	
 			 </table>				
 		</div>
