@@ -3,7 +3,11 @@ package com.xiao.mapper;
 import com.xiao.pojo.TbBrand;
 import com.xiao.pojo.TbBrandExample;
 
+import java.util.List;
+import java.util.Map;
+
 public interface TbBrandMapper extends BaseMapper<TbBrand,TbBrandExample,Long> {
+    List<Map> selectOptionList();
 /*    int countByExample(TbBrandExample example);
 
     int deleteByExample(TbBrandExample example);

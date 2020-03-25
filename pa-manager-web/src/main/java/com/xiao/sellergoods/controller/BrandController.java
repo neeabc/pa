@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by travelround on 2018/12/6.
@@ -96,5 +97,10 @@ public class BrandController {
             @RequestBody TbBrand tbBrand){
         PageInfo<TbBrand> info = brandService.search(page,rows,tbBrand);
         return new PageResult<>(info.getTotal(), info.getList());
+    }
+
+    @RequestMapping("/selectOptionList")
+    public List<Map> selectOptionList(){
+        return brandService.selectOptionList();
     }
 }

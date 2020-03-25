@@ -18,7 +18,6 @@ app.controller('baseController' ,function($scope){
         $scope.search( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
     };
 
-
     $scope.selectids = new Set();
     $scope.updateSelection = function($event,id){
         if($event.target.checked){
@@ -27,5 +26,25 @@ app.controller('baseController' ,function($scope){
             $scope.selectids.delete(id);
         }
     };
+
+    $scope.setToList = function(set){
+        var list = [];
+        $scope.selectids.forEach(function (id) {
+            list.push(id);
+        });
+        return list;
+    };
+
+    $scope.jsonToString=function(jsonString,key){
+        var json=JSON.parse(jsonString);//将json字符串转换为json对象
+        var value="";
+        for(var i=0;i<json.length;i++){
+            if(i>0){
+                value+=","
+            }
+            value+=json[i][key];
+        }
+        return value;
+    }
 
 });

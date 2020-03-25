@@ -86,7 +86,7 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 		TbTypeTemplateExample example=new TbTypeTemplateExample();
 		TbTypeTemplateExample.Criteria criteria = example.createCriteria();
 		
-		if(type_template!=null){			
+		if(type_template!=null){
 						if(type_template.getName()!=null && type_template.getName().length()>0){
 				criteria.andNameLike("%"+type_template.getName()+"%");
 			}			if(type_template.getSpecIds()!=null && type_template.getSpecIds().length()>0){
