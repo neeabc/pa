@@ -8,6 +8,11 @@
     <result column="brand_ids" property="brandIds" jdbcType="VARCHAR" />
     <result column="custom_attribute_items" property="customAttributeItems" jdbcType="VARCHAR" />
   </resultMap>
+
+  <!--List<Map> selectOptionList();-->
+  <select id="selectOptionList"  resultType="java.util.Map" >
+    select id,name as text from tb_type_template
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
