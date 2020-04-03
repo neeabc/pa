@@ -4,6 +4,8 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.xiao.entity.PageResult;
+import com.xiao.group.Goods;
+import com.xiao.mapper.TbGoodsDescMapper;
 import com.xiao.mapper.TbGoodsMapper;
 import com.xiao.pojo.TbGoods;
 import com.xiao.pojo.TbGoodsExample;
@@ -49,8 +51,19 @@ public class GoodsServiceImpl implements GoodsService {
 		goodsMapper.insert(goods);		
 	}
 
-	
-	/**
+	@Autowired
+	private TbGoodsDescMapper goodsDescMapper;
+
+    @Override
+    public void add(Goods goods) {
+		goods.getGoods().setAuditStatus("0");//设置未申请状态
+		goodsMapper.insert(goods.getGoods());
+		goods.getGoodsDesc().setGoodsId(goods.getGoods().getId());//设置ID
+		goodsDescMapper.insert(goods.getGoodsDesc());//插入商品扩展数据
+    }
+
+
+    /**
 	 * 修改
 	 */
 	@Override

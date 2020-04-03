@@ -2,6 +2,7 @@ package com.xiao.sellergoods.service;
 
 
 import com.xiao.entity.PageResult;
+import com.xiao.group.Goods;
 import com.xiao.pojo.TbGoods;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public interface GoodsService {
 	 * 增加
 	*/
 	public void add(TbGoods goods);
+	public void add(Goods goods);
 
 
 	/**

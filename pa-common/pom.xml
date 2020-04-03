@@ -18,6 +18,17 @@
             <artifactId>pa-dao</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- 文件上传组件 -->
+        <!-- FastDFS client -->
+        <dependency>
+            <groupId>fastdfs_client</groupId>
+            <artifactId>fastdfs_client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

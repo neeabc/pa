@@ -6,7 +6,7 @@ import com.xiao.entity.PageResult;
 import com.xiao.entity.Result;
 import com.xiao.pojo.TbBrand;
 import com.xiao.sellergoods.service.BrandService;
-import com.xiao.utils.UsualResult;
+import com.xiao.util.UsualResult;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.RequestBody;

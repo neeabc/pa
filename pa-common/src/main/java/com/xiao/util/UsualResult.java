@@ -1,4 +1,4 @@
-package com.xiao.utils;
+package com.xiao.util;
 
 import com.xiao.entity.Result;
 
