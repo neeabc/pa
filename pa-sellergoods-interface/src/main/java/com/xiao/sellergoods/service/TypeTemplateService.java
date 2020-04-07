@@ -63,4 +63,6 @@ public interface TypeTemplateService {
 	public PageResult findPage(TbTypeTemplate type_template, int pageNum, int pageSize);
 
     List<Map> selectOptionList();
+
+    List<Map> findSpecList(Long id);
 }

@@ -1,10 +1,14 @@
 package com.xiao.sellergoods.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.xiao.entity.PageResult;
+import com.xiao.mapper.TbSpecificationOptionMapper;
 import com.xiao.mapper.TbTypeTemplateMapper;
+import com.xiao.pojo.TbSpecificationOption;
+import com.xiao.pojo.TbSpecificationOptionExample;
 import com.xiao.pojo.TbTypeTemplate;
 import com.xiao.pojo.TbTypeTemplateExample;
 import com.xiao.sellergoods.service.TypeTemplateService;
@@ -107,5 +111,25 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
     public List<Map> selectOptionList() {
 		return type_templateMapper.selectOptionList();
     }
+
+	@Autowired
+	private TbSpecificationOptionMapper specificationOptionMapper;
+
+	@Override
+	public List<Map> findSpecList(Long id) {
+		//查询模板
+		TbTypeTemplate typeTemplate = type_templateMapper.selectByPrimaryKey(id);
+
+		List<Map> list = JSON.parseArray(typeTemplate.getSpecIds(), Map.class)  ;
+		for(Map map:list){
+			//查询规格选项列表
+			TbSpecificationOptionExample example=new TbSpecificationOptionExample();
+			TbSpecificationOptionExample.Criteria criteria = example.createCriteria();
+			criteria.andSpecIdEqualTo( new Long( (Integer)map.get("id") ) );
+			List<TbSpecificationOption> options = specificationOptionMapper.selectByExample(example);
+			map.put("options", options);
+		}
+		return list;
+	}
 
 }
